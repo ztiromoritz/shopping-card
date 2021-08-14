@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Card from './components/card'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,6 +38,7 @@ function App() {
             Vite Docs
           </a>
         </p>
+          <Card id="h10" open={false}></Card>
       </header>
     </div>
   )
