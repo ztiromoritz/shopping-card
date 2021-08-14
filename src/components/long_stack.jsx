@@ -6,6 +6,7 @@ class LongStack extends Component {
   constructor(props){
     super(props)
   }
+
   render(){
 
     return(
@@ -14,6 +15,7 @@ class LongStack extends Component {
               key={card.id}
               id={card.id}
               open={card.open}
+              onClick={() => this.props.onClick(card.id)}
               z={index}
               y={index * (this.props.stackOffset || STACK_OFFSET)}></Card>)}
       </div>
