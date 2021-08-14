@@ -27,20 +27,26 @@ class Card extends Component {
     const suit = SUITS[this.props.id.substr(0,1)].name
     const value = this.props.id.substr(1)
     const cardName = `../assets/cards/card_${suit}_${value}.png`
+    const cardBack = '../assets/cards/card_back.png'
 
     console.log("cardName", cardName);
     console.log("images", images);
-    this.state ={
-      open: this.props.open,
-      img: images[cardName].default
+    try {      
+      this.state ={
+        img: images[cardName].default,
+        back: images[cardBack].default
+      }
+    } catch (error) {
+      console.error(error, cardName)
     }
   }
   render(){
     console.log("img", this.state.img);
     return(
-      <div className="card">
-        
-        <img src={this.state.img}>
+      <div className="card" style={{
+        zIndex: this.props.z,
+        marginTop: -50}}>
+        <img src={this.props.open ? this.state.img : this.state.back}>
 
         </img>
       </div>
