@@ -23,8 +23,14 @@ class App extends Component{
     return (
       <div className="App">
        
-          <div id="hand">
-            <DropArea type="blank"></DropArea>
+          <div id="pool">
+            <div id="deck">
+              <DropArea type="blank"></DropArea>
+              <LongStack cards={this.props.G.deck.map(id=>({id, open: false}))} stackOffset={0.25} ></LongStack>
+            </div>
+            <div id="hand">
+              <DropArea type="blank"></DropArea>
+            </div> 
           </div>
   
           <div id="stacks">
