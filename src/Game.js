@@ -17,7 +17,7 @@ function shuffle(a) {
 }
 
 
-function deal(){
+function deal() {
     const state = {
         deck: [],
         hand: [],
@@ -32,11 +32,11 @@ function deal(){
 
     const cards = [...ALL_CARDS];
     shuffle(cards);
-    for(let n = 0; n < STACK_COUNT; n++){
-        const stack = {open:[], close: []};
+    for (let n = 0; n < STACK_COUNT; n++) {
+        const stack = { open: [], close: [] };
         stack.open.push(cards.pop());
         let m = n;
-        while(m--){
+        while (m--) {
             stack.close.push(cards.pop());
         }
         state.stacks.push(stack);
@@ -52,8 +52,16 @@ export const ShoppingCard = {
     },
 
     moves: {
-        clickCell: (G, ctx, id) => {
-            G.cells[id] = ctx.currentPlayer;
-        },
+        clickDeck: (G, ctx, id) => {
+            if (G.deck.length + G.hand.length === 0) {
+                return INVALID_MOVE;
+            }else if(G.deck.length === 0){
+                while(G.hand.length){
+                    G.deck.push(G.hand.pop());
+                }
+            }else{
+                G.hand.push(G.deck.pop());
+            }
+        }
     },
 };
