@@ -10,7 +10,12 @@ class LongStack extends Component {
 
     return(
       <div className="stack">
-        {this.props.cards.map((card, index) => <Card key={card.id} id={card.id} open={card.open} z={index} y={index * STACK_OFFSET}></Card>)}
+        {this.props.cards.map((card, index) => <Card 
+              key={card.id}
+              id={card.id}
+              open={card.open}
+              z={index}
+              y={index * (this.props.stackOffset || STACK_OFFSET)}></Card>)}
       </div>
     )
   }
