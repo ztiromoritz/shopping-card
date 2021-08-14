@@ -1,3 +1,5 @@
+import { INVALID_MOVE } from "boardgame.io/dist/types/src/core/constants";
+
 const ALL_CARDS = [
     "hA", "h02", "h03", "h04", "h05", "h06", "h07", "h08", "h09", "h10", "hJ", "hQ", "hK",
     "cA", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c10", "cJ", "cQ", "cK",
@@ -6,6 +8,18 @@ const ALL_CARDS = [
 ];
 
 const STACK_COUNT = 7;
+
+//  diamonds (♦), clubs (♣), hearts (♥) and spades (♠)
+const SUIT_TO_COLOR = {
+    "h": "red", //♥
+    "c": "black", //♣
+    "d": "red", // ♦
+    "s": "black" //♠ 
+} 
+
+const isKing = (card) => (card || "")[1] === "K";
+
+const color = (card)=> SUIT_TO_COLOR[(card||"")[0]];
 
 
 function shuffle(a) {
@@ -52,7 +66,7 @@ export const ShoppingCard = {
     },
 
     moves: {
-        clickDeck: (G, ctx, id) => {
+        clickDeck: (G, ctx) => {
             if (G.deck.length + G.hand.length === 0) {
                 return INVALID_MOVE;
             }else if(G.deck.length === 0){
@@ -62,6 +76,30 @@ export const ShoppingCard = {
             }else{
                 G.hand.push(G.deck.pop());
             }
+        },
+        drawToStack: (G, ctx, stackId)=> {
+            if(G.hand.length === 0){
+                return INVALID_MOVE; 
+            }
+            if(G.stackId<0 || G.stackId >= STACK_COUNT){
+                return INVALID_MOVE;
+            }
+            const stack = G.stack[stackId];
+            const card = G.hand.peek();
+            if(stack.open.length === 0 && stack.close.length === 0){
+                // Stack complete empty, only king allowed
+                if(!isKing(card)){
+                    return INVALID_MOVE;
+                }
+            }else{
+                const topCard = stack.open.at(-1);
+                // Color has to alternate
+                if(color(card)===color(topCard)){
+                    return INVALID_MOVE;
+                }
+            }
+
+            stack.open.push(hand.pop());
         }
     },
 };
