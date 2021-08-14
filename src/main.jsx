@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import { Client } from 'boardgame.io/client';
-import { TicTacToe } from './Game';
+import { ShoppingCard } from './Game';
 
 class TicTacToeClient {
   constructor() {
-    this.client = Client({ game: TicTacToe });
+    this.client = Client({ game: ShoppingCard });
     this.client.start();
   }
 }
