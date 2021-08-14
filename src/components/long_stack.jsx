@@ -15,7 +15,7 @@ class LongStack extends Component {
               key={card.id}
               id={card.id}
               open={card.open}
-              onMouseDown={(e) => this.props.onMouseDown(e, card.id)}
+              onMouseDown={((e) => this.props.onMouseDown(e, card.id)) || null}
               z={index}
               y={index * (this.props.stackOffset || STACK_OFFSET)}></Card>)}
       </div>
