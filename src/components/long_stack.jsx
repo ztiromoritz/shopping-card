@@ -10,12 +10,12 @@ class LongStack extends Component {
   render(){
 
     return(
-      <div className="stack">
+      <div className="stack" style={{position: this.props.dragging ? "absolute" : "relative"}}>
         {this.props.cards.map((card, index) => <Card 
               key={card.id}
               id={card.id}
               open={card.open}
-              onClick={() => this.props.onClick(card.id)}
+              onMouseDown={(e) => this.props.onMouseDown(e, card.id)}
               z={index}
               y={index * (this.props.stackOffset || STACK_OFFSET)}></Card>)}
       </div>

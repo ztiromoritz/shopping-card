@@ -51,7 +51,8 @@ class Card extends Component {
           background: `url(${imgSrc}) no-repeat center center`,
           top: this.props.y || 0
         }}
-        onClick={this.props.onClick}> 
+        onClick={this.props.onClick}
+        onMouseDown={(e) => this.props.onMouseDown(e)}> 
       </div>
     )
   }

@@ -12,11 +12,23 @@ class App extends Component{
       ghostStack: [],
     }
   }
-  splitStackAt(stack, card){
+  splitStackAt(event, stack, card){
     console.log("splitting stack at", card)
+
+    const ghostStack = {
+      stack,
+      posX: event.clientX,
+      posY: event.clientY
+    }
     this.state = {
       dragging: true,
-      ghostStack: stack
+      ghostStack
+    }
+  }
+
+  dragStack(event){
+    const ghostStack = {
+      stack: this.state.ghostStack
     }
   }
   render(){
@@ -42,7 +54,7 @@ class App extends Component{
                 return [...closedCards, ...openCards]
               })
               .map(cards=>{console.log(cards); return cards})
-              .map(cards=><LongStack cards={cards} onClick={(card) => this.splitStackAt(cards, card)}></LongStack>)}
+              .map(cards=><LongStack cards={cards} onMouseDown={(event, card) => this.splitStackAt(event, cards, card)}></LongStack>)}
           </div>
   
           <div id="slots">
@@ -52,7 +64,12 @@ class App extends Component{
             <DropArea type="spades"></DropArea>
           </div>
           {this.state.dragging ? 
-            <LongStack cards={this.state.ghostStack} dragging={this.state.dragging}></LongStack>
+            <LongStack 
+              cards={this.state.ghostStack.stack} 
+              dragging={this.state.dragging} 
+              posX={this.state.ghostStack.posX}
+              posY={this.state.ghostStack.posY}
+              ></LongStack>
             : null
           }
           
