@@ -2,6 +2,7 @@ import React, { Component, useDebugValue, useState } from 'react'
 import './App.css'
 import LongStack from './components/long_stack'
 import DropArea from './components/drop_area'
+import { Sounds } from './Sound';
 
 
 class App extends Component{
@@ -54,7 +55,16 @@ class App extends Component{
   
 
   clickDeck(){
-    this.props.moves.clickDeck();
+    if(this.props.G.deck.length === 0 && this.props.G.hand.length >0 ){
+      // redeal
+      Sounds.redeal.play();
+      this.props.moves.clickDeck()
+    }else if(this.props.G.deck.length + this.props.G.hand.length >0 ){
+      Sounds.cardPlace.play()
+      this.props.moves.clickDeck()
+    }
+   
+    
   }
   render(){
     return (
