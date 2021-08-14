@@ -23,7 +23,7 @@ class App extends Component{
       <div className="App">
        
           <div id="hand">
-  
+            <DropArea type="blank"></DropArea>
           </div>
   
           <div id="stacks">
@@ -39,7 +39,10 @@ class App extends Component{
           </div>
   
           <div id="slots">
-  
+            <DropArea type="hearts"></DropArea>
+            <DropArea type="clubs"></DropArea>
+            <DropArea type="diamonds"></DropArea>
+            <DropArea type="spades"></DropArea>
           </div>
           {this.state.dragging ? 
             <LongStack cards={this.state.ghostStack} dragging={this.state.dragging}></LongStack>
