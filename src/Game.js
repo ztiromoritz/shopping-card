@@ -1,29 +1,59 @@
+const ALL_CARDS = [
+    "hA", "h02", "h03", "h04", "h05", "h06", "h07", "h08", "h09", "h10", "hJ", "hQ", "hK",
+    "cA", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c10", "cJ", "cQ", "cK",
+    "sA", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10", "sJ", "sQ", "sK",
+    "dA", "d02", "d03", "d04", "d05", "d06", "d07", "d08", "d09", "d10", "dJ", "dQ", "dK",
+];
+
+const STACK_COUNT = 7;
+
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+
+function deal(){
+    const state = {
+        deck: [],
+        hand: [],
+        stacks: [],
+        slots: {
+            hearts: [],
+            clubs: [],
+            spades: [],
+            diamonds: []
+        }
+    }
+
+    const cards = [...ALL_CARDS];
+    shuffle(cards);
+    for(let n = 0; n < STACK_COUNT; n++){
+        const stack = {open:[], close: []};
+        stack.open.push(cards.pop());
+        let m = n;
+        while(m--){
+            stack.close.push(cards.pop());
+        }
+        state.stacks.push(stack);
+    }
+    state.deck = [...cards];
+    return state;
+}
 
 
 export const ShoppingCard = {
-    setup: () => ({ 
-        deck: ["h1","h2", "h3", "h10", "hjack", "hqueen", "hking"],
-        hand: ["c1"],
-        stacks : [
-            {open: ["d4"], close: []},
-            {open: ["squeen"], close: ["sjack"]},
-            {open: ["hking"], close: ["hqueen", "hking"]},
-            {open: ["s7"], close: ["hking", "h4", "h7"]},
-            {open: ["h9"], close: ["h9", "h5", "h6", "h5", "h6",]},
-            {open: ["c5"], close:  ["h9", "h5", "h6", "h5", "h6", "hking"]},
-            {open: ["s10"], close:  ["h9", "h5", "h6", "h9", "h5", "h6", "h9"]},
-        ],
-        slots : {
-            hearts: ["h1"],
-            clubs: [],
-            spades: ["s2","s1"],
-            diamonds: []
-        }
-    }),
-  
-    moves: {
-      clickCell: (G, ctx, id) => {
-        G.cells[id] = ctx.currentPlayer;
-      },
+    setup: () => {
+        return deal();
     },
-  };
+
+    moves: {
+        clickCell: (G, ctx, id) => {
+            G.cells[id] = ctx.currentPlayer;
+        },
+    },
+};
