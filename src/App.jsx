@@ -9,7 +9,8 @@ function App({G, ctx}) {
     <div className="App">
      
         <div id="hand">
-
+          
+         
         </div>
 
         <div id="stacks">
