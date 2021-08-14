@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [reactRefresh()],
   server: {
     fs: {
-      allow: ['./','./src/assets/cards']
+      allow: ['./','./src/assets/cards/']
     } 
   }
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-const images = import.meta.globEager('../assets/cards/*.png')
 import './card.css'
+const images = import.meta.globEager('../assets/cards/*.png');
 export const SUITS = {
   h: {
     name: "hearts",
@@ -26,16 +26,20 @@ class Card extends Component {
 
     const suit = SUITS[this.props.id.substr(0,1)].name
     const value = this.props.id.substr(1)
-    const cardName = `card_${suit}_${value}`
+    const cardName = `../assets/cards/card_${suit}_${value}.png`
 
+    console.log("cardName", cardName);
+    console.log("images", images);
     this.state ={
       open: this.props.open,
-      img: cardName
+      img: images[cardName].default
     }
   }
   render(){
+    console.log("img", this.state.img);
     return(
       <div className="card">
+        
         <img src={this.state.img}>
 
         </img>

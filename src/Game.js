@@ -1,4 +1,4 @@
-import { INVALID_MOVE } from "boardgame.io/dist/types/src/core/constants";
+import { INVALID_MOVE } from 'boardgame.io/core';
 
 const ALL_CARDS = [
     "hA", "h02", "h03", "h04", "h05", "h06", "h07", "h08", "h09", "h10", "hJ", "hQ", "hK",
@@ -9,12 +9,12 @@ const ALL_CARDS = [
 
 const STACK_COUNT = 7;
 
-//  diamonds (♦), clubs (♣), hearts (♥) and spades (♠)
+
 const SUIT_TO_COLOR = {
-    "h": "red", //♥
-    "c": "black", //♣
-    "d": "red", // ♦
-    "s": "black" //♠ 
+    "h": "red", 
+    "c": "black", 
+    "d": "red",
+    "s": "black" 
 } 
 
 const isKing = (card) => (card || "")[1] === "K";
