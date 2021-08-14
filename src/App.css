@@ -28,19 +28,25 @@ body {
   position: relative;
 }
 
-#deck .dropArea {
-  position: absolute;
-  top: 0;
-}
-#deck .stack {
-  position: absolute;
-  top: 0;
-}
 
 #hand {
   position: absolute;
   left: 80px;
 }
+
+#hand .dropArea, 
+#deck .dropArea {
+  position: absolute;
+  top: 0;
+}
+
+#hand .stack,
+#deck .stack {
+  position: absolute;
+  top: 0;
+}
+
+
 
 #stacks {
   background-color: darkolivegreen;

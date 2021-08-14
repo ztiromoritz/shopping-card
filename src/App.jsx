@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useDebugValue, useState } from 'react'
 import './App.css'
 import LongStack from './components/long_stack'
 import DropArea from './components/drop_area'
@@ -32,21 +32,22 @@ class App extends Component{
     }
   }
   
-  
+
   clickDeck(){
-    console.log("CLICK-DECK");
+    this.props.moves.clickDeck();
   }
   render(){
     return (
       <div className="App">
        
           <div id="pool">
-            <div id="deck" onClick={this.clickDeck}>
+            <div id="deck" onClick={()=>this.clickDeck()}>
               <DropArea type="blank"></DropArea>
               <LongStack cards={this.props.G.deck.map(id=>({id, open: false}))} stackOffset={0.25} ></LongStack>
             </div>
             <div id="hand">
               <DropArea type="blank"></DropArea>
+              <LongStack cards={this.props.G.hand.map(id=>({id, open: true}))} stackOffset={10}></LongStack>
             </div> 
           </div>
   
