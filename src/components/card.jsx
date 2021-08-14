@@ -42,13 +42,12 @@ class Card extends Component {
   }
   render(){
     console.log("img", this.state.img);
+    const imgSrc = this.props.open ? this.state.img : this.state.back
     return(
       <div className="card" style={{
         zIndex: this.props.z,
-        marginTop: -50}}>
-        <img src={this.props.open ? this.state.img : this.state.back}>
-
-        </img>
+        background: `url(${imgSrc}) no-repeat center center`,
+        top: this.props.y}}> 
       </div>
     )
   }
