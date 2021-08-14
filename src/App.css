@@ -30,6 +30,11 @@ body {
   display: flex;
 }
 
+.stack {
+  width: 42px;
+  position: relative;
+}
+
 #slots {
   background-color:darkolivegreen;
   position: absolute;
