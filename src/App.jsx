@@ -22,7 +22,7 @@ function App({G, ctx}) {
               return [...closedCards, ...openCards]
             })
             .map(cards=>{console.log(cards); return cards})
-            .map(cards=><LongStack cards={cards}></LongStack>)}
+            .map((cards, index)=><LongStack key={index} cards={cards}></LongStack>)}
         </div>
 
         <div id="slots">

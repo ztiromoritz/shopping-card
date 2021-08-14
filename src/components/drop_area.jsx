@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './drop_area.css';
 
 class LongStack extends Component {
   constructor(props){
@@ -8,7 +9,7 @@ class LongStack extends Component {
 
     return(
       <div className="dropArea">
-        
+          
       </div>
     )
   }
