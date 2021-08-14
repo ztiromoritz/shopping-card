@@ -44,10 +44,14 @@ class Card extends Component {
     console.log("img", this.state.img);
     const imgSrc = this.props.open ? this.state.img : this.state.back
     return(
-      <div className="card" style={{
-        zIndex: this.props.z,
-        background: `url(${imgSrc}) no-repeat center center`,
-        top: this.props.y}}> 
+      <div 
+        className={"card " + this.props.draggable ? "draggable" : ""} 
+        style={{
+          zIndex: this.props.z,
+          background: `url(${imgSrc}) no-repeat center center`,
+          top: this.props.y
+        }}
+        onClick={this.props.onClick}> 
       </div>
     )
   }
