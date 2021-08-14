@@ -2,21 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import { Client } from 'boardgame.io/client';
+import { Client } from 'boardgame.io/react';
 import { ShoppingCard } from './Game';
 
-class TicTacToeClient {
-  constructor() {
-    this.client = Client({ game: ShoppingCard });
-    this.client.start();
-  }
-}
-
-const app = new TicTacToeClient();
+const ClientApp = Client({
+  game: ShoppingCard,
+  board: App 
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ClientApp />
   </React.StrictMode>,
   document.getElementById('root')
 )

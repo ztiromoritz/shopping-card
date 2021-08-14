@@ -84,8 +84,8 @@ export const ShoppingCard = {
             if(G.stackId<0 || G.stackId >= STACK_COUNT){
                 return INVALID_MOVE;
             }
-            const stack = G.stack[stackId];
-            const card = G.hand.peek();
+            const stack = G.stacks[stackId];
+            const card = G.hand.at(-1);
             if(stack.open.length === 0 && stack.close.length === 0){
                 // Stack complete empty, only king allowed
                 if(!isKing(card)){
@@ -94,12 +94,13 @@ export const ShoppingCard = {
             }else{
                 const topCard = stack.open.at(-1);
                 // Color has to alternate
+                // TODO: order
                 if(color(card)===color(topCard)){
                     return INVALID_MOVE;
                 }
             }
 
-            stack.open.push(hand.pop());
+            stack.open.push(G.hand.pop());
         }
     },
 };

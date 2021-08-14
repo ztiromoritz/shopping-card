@@ -39,7 +39,6 @@ class Card extends Component {
     console.log("img", this.state.img);
     return(
       <div className="card">
-        
         <img src={this.state.img}>
 
         </img>
