@@ -21,13 +21,14 @@ class LongStack extends Component {
         }}>
         {this.props.cards
           .map((card, index) => {
-            if(this.props.hideCards && this.props.hideCards.includes(card)){
+            if(this.props.hideCards && this.props.hideCards.findIndex(hideCard => hideCard.id === card.id) != -1){
               return null
             }
             return(<Card 
               key={card.id}
               id={card.id}
               open={card.open}
+              draggable={card.draggable}
               onMouseDown={(e) => this.props.onMouseDown && this.props.onMouseDown(e, card.id) }
               z={index}
               y={index * (this.props.stackOffset || STACK_OFFSET)}></Card>)

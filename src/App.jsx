@@ -18,6 +18,7 @@ class App extends Component{
     if(this.state.dragging){
       return
     }
+    console.log("dragging", card)
     const index = stack.findIndex(stackCard => stackCard.id === card)
     const newStack = stack.slice(index, stack.length)
 
@@ -77,7 +78,10 @@ class App extends Component{
             </div>
             <div id="hand">
               <DropArea type="blank"></DropArea>
-              <LongStack cards={this.props.G.hand.map(id=>({id, open: true}))} stackOffset={10}></LongStack>
+              <LongStack 
+                cards={this.props.G.hand.map(id=>({id, open: true}))} 
+                stackOffset={10}
+                ></LongStack>
             </div> 
           </div>
   
@@ -89,7 +93,6 @@ class App extends Component{
                 const openCards = open.map(id => ({id, open: true}));
                 return [...closedCards, ...openCards]
               })
-              .map(cards=>{console.log(cards); return cards})
               .map(cards=><LongStack 
                 cards={cards} 
                 onMouseDown={(event, card) => this.splitStackAt(event, cards, card)}
