@@ -2,6 +2,7 @@ import React, { Component, useDebugValue, useState } from 'react'
 import './App.css'
 import LongStack from './components/long_stack'
 import DropArea from './components/drop_area'
+import { Sounds } from './Sound';
 
 
 class App extends Component{
@@ -34,6 +35,7 @@ class App extends Component{
   
 
   clickDeck(){
+    Sounds.cardPlace.play();
     this.props.moves.clickDeck();
   }
   render(){

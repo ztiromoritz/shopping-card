@@ -5,9 +5,10 @@ import App from './App'
 import { Client } from 'boardgame.io/react';
 import { ShoppingCard } from './Game';
 
+
 const ClientApp = Client({
   game: ShoppingCard,
-  board: App 
+  board: App
 });
 
 ReactDOM.render(
