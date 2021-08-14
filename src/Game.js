@@ -1,6 +1,6 @@
 
 
-export const TicTacToe = {
+export const ShoppingCard = {
     setup: () => ({ 
         deck: ["h1","h2", "h3", "h10", "hjack", "hqueen", "hking"],
         hand: ["c1"],
