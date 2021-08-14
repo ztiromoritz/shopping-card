@@ -47,9 +47,9 @@ class Card extends Component {
       <div 
         className={`card ${this.props.draggable ? "draggable" : ""}`} 
         style={{
-          zIndex: this.props.z,
+          zIndex: this.props.z || 0,
           background: `url(${imgSrc}) no-repeat center center`,
-          top: this.props.y
+          top: this.props.y || 0
         }}
         onClick={this.props.onClick}> 
       </div>

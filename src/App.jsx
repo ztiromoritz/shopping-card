@@ -1,41 +1,58 @@
-import React, { useState } from 'react'
+import React, { Component, useState } from 'react'
 import './App.css'
-import Card from './components/card'
-import DropArea from './components/drop_area'
 import LongStack from './components/long_stack'
+import DropArea from './components/drop_area'
 
 
-function App({G, ctx}) {
-  return (
-    <div className="App">
-     
-        <div id="hand">
-          <DropArea type="blank"></DropArea>
-         
-        </div>
-
-        <div id="stacks">
-          {G.stacks
-            .map(stack =>{
-              const {open,close}= stack;
-              const closedCards = close.map(id=>({id, open: false}));
-              const openCards = open.map(id => ({id, open: true}));
-              return [...closedCards, ...openCards]
-            })
-            .map(cards=>{console.log(cards); return cards})
-            .map((cards, index)=><LongStack key={index} cards={cards}></LongStack>)}
-        </div>
-
-        <div id="slots">
-          <DropArea type="hearts"></DropArea>
-          <DropArea type="clubs"></DropArea>
-          <DropArea type="diamonds"></DropArea>
-          <DropArea type="spades"></DropArea>
-        </div>
-
-        
-    </div>
-  )
+class App extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      dragging: false,
+      ghostStack: [],
+    }
+  }
+  splitStackAt(stack, card){
+    console.log("splitting stack at", card)
+    this.state = {
+      dragging: true,
+      ghostStack: stack
+    }
+  }
+  render(){
+    return (
+      <div className="App">
+       
+          <div id="hand">
+            <DropArea type="blank"></DropArea>
+          </div>
+  
+          <div id="stacks">
+            {this.props.G.stacks
+              .map(stack =>{
+                const {open,close}= stack;
+                const closedCards = close.map(id=>({id, open: false}));
+                const openCards = open.map(id => ({id, open: true}));
+                return [...closedCards, ...openCards]
+              })
+              .map(cards=>{console.log(cards); return cards})
+              .map(cards=><LongStack cards={cards} onClick={(card) => this.splitStackAt(cards, card)}></LongStack>)}
+          </div>
+  
+          <div id="slots">
+            <DropArea type="hearts"></DropArea>
+            <DropArea type="clubs"></DropArea>
+            <DropArea type="diamonds"></DropArea>
+            <DropArea type="spades"></DropArea>
+          </div>
+          {this.state.dragging ? 
+            <LongStack cards={this.state.ghostStack} dragging={this.state.dragging}></LongStack>
+            : null
+          }
+          
+      </div>
+    )
+  }
 }
 
 export default App
