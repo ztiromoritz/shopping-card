@@ -1,5 +1,4 @@
 .card{
-  cursor: pointer;
   width: 42px;
   height: 60px;
   overflow: hidden;
@@ -9,10 +8,10 @@
   position: absolute;
 }
 .card:hover{
-  border-color: white;
+  border-color: red;
 }
 .card.draggable:hover{
-  border-color: red;
+  border-color: white;
   cursor: grab;
 }
 .card.grabbed{
