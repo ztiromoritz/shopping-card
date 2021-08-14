@@ -29,8 +29,6 @@ class Card extends Component {
     const cardName = `../assets/cards/card_${suit}_${value}.png`
     const cardBack = '../assets/cards/card_back.png'
 
-    console.log("cardName", cardName);
-    console.log("images", images);
     try {      
       this.state ={
         img: images[cardName].default,
@@ -41,7 +39,6 @@ class Card extends Component {
     }
   }
   render(){
-    console.log("img", this.state.img);
     const imgSrc = this.props.open ? this.state.img : this.state.back
     return(
       <div 

@@ -64,6 +64,9 @@ body {
   width: 42px;
   position: relative;
 }
+.stack.dragging {
+  opacity: 0.5;
+}
 
 #slots {
   padding: 20px;

@@ -18,9 +18,6 @@ class DropArea extends Component {
 
         const name = IMAGES[this.props.type] || IMAGES['blank'];
 
-        console.log("images", images);
-        console.log("type", this.props.type);
-        console.log("name", name);
         const imgSrc = images[name].default;
 
         return (
