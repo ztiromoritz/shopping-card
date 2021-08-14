@@ -31,12 +31,17 @@ class App extends Component{
       stack: this.state.ghostStack
     }
   }
+  
+  
+  clickDeck(){
+    console.log("CLICK-DECK");
+  }
   render(){
     return (
       <div className="App">
        
           <div id="pool">
-            <div id="deck">
+            <div id="deck" onClick={this.clickDeck}>
               <DropArea type="blank"></DropArea>
               <LongStack cards={this.props.G.deck.map(id=>({id, open: false}))} stackOffset={0.25} ></LongStack>
             </div>
