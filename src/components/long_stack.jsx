@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Card from "./card"
+
+const STACK_OFFSET = 15
 class LongStack extends Component {
   constructor(props){
     super(props)
@@ -7,8 +9,8 @@ class LongStack extends Component {
   render(){
 
     return(
-      <div className="stack">
-        {this.props.cards.map((card, index) => <Card key={card.id} id={card.id} open={card.open} z={index}></Card>)}
+      <div className="stack" style={{position: "relative"}}>
+        {this.props.cards.map((card, index) => <Card key={card.id} id={card.id} open={card.open} z={index} y={index * STACK_OFFSET}></Card>)}
       </div>
     )
   }
