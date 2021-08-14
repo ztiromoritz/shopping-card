@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react'
 import './App.css'
 import LongStack from './components/long_stack'
+import DropArea from './components/drop_area'
 
 
 class App extends Component{
@@ -35,7 +36,7 @@ class App extends Component{
                 return [...closedCards, ...openCards]
               })
               .map(cards=>{console.log(cards); return cards})
-              .map(cards=><LongStack cards={cards} onClick={(card) => splitStackAt(cards, card)}></LongStack>)}
+              .map(cards=><LongStack cards={cards} onClick={(card) => this.splitStackAt(cards, card)}></LongStack>)}
           </div>
   
           <div id="slots">
